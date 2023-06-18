@@ -25,6 +25,8 @@
             tapping-term-ms = <200>;
             bindings = <&mo>, <&warpd_macro>;
         };
+    };
+
 
 
         keymap {

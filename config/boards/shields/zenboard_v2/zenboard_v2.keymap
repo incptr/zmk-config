@@ -9,6 +9,13 @@
 #include <dt-bindings/zmk/bt.h>
 / {
     behaviors {
+	esc_b2default: esc_b2default {
+		compatible = "zmk,behavior-macro";
+		label = "ESC_DEFAULT";
+		#binding-cells = <0>;
+        bindings = <&kp ESCAPE>,  
+                       <&to 0>;
+	};
 	lt_macro: lt_macro {
 		compatible = "zmk,behavior-macro";
 		label = "LT_MACRO";
@@ -25,6 +32,7 @@
             flavor = "tap-preferred";
             bindings = <&mo>, <&lt_macro>;
         };
+
 
     };
 
@@ -80,12 +88,12 @@
                 &none        &none        &none   &none                       &none      &none &none   &none
                         >;
                 };
-                onehanded_layer {
+                mouse_layer {
                         bindings = <
-&none    &none    &none    &none    &none    &none                &kp LA(N1) &kp LA(N2) &kp LA(N3) &kp LA(N4) &kp LA(N5)  &kp LA(N6)    
-&none    &none    &none    &none    &none    &none                &kp LEFT  &kp  DOWN  &kp  UP   &kp RIGHT    &kp LA(N7)  &kp ESCAPE
-                  &none    &none    &none    &none                &kp HOME  &kp PG_DN  &kp PG_UP &kp END 
-                  &none    &none    &none    &none                &kp ENTER &kp LA(LS(H)) &to 0   &none
+&none    &none    &kp N7   &kp N8   &kp N9   &none                &kp LA(N1) &kp LA(N2) &kp LA(N3) &kp LA(N4) &kp LA(N5)  &kp LA(N6)    
+&none    &none    &kp N4   &kp N5   &kp N6   &none                &kp LEFT  &kp  DOWN  &kp  UP   &kp RIGHT    &kp LA(N7)  &kp ESCAPE
+                  &kp N1   &kp N2   &kp N3   &none                &kp HOME  &kp PG_DN  &kp PG_UP &kp END 
+                  &none    &none    &none    &none                &kp ENTER &esc_b2default &to 0   &none
                         >;
                 };
         };

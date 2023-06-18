@@ -8,23 +8,24 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 / {
-    macros {
-        ZMK_MACRO(warpd_macro,
-            wait-ms = <30>;
-            tap-ms = <40>;
-            bindings = <&kp LA(LS(N))>,  
-                       <&to 5>;
-        )
-    };
     behaviors {
-        lt_macro: behavior_lt_macro {
+	lt_macro: lt_macro {
+		compatible = "zmk,behavior-macro";
+		label = "LT_MACRO";
+		#binding-cells = <0>;
+        bindings = <&kp LA(LS(N))>,  
+                       <&to 5>;
+	};
+	mouse_macro: mouse_macro {
             compatible = "zmk,behavior-hold-tap";
-            label = "lt_macro";
+            label = "MOUSE_MACRO";
             #binding-cells = <2>;
-            flavor = "hold-preferred";
-            tapping-term-ms = <200>;
-            bindings = <&mo>, <&warpd_macro>;
+            tapping-term-ms = <190>;
+            quick-tap-ms = <250>;
+            flavor = "tap-preferred";
+            bindings = <&mo>, <&lt_macro>;
         };
+
     };
 
 
@@ -43,7 +44,7 @@
  &kp   Z       &kp  Q  &kp  W   &kp  F    &kp  P     &kp  B                      &kp  J    &kp  L     &kp  U    &kp  Y  &kp  SQT &kp SLASH  
  &kp BACKSPACE &kp  A  &kp  R   &kp  S    &kp  T     &kp  G                      &kp  M    &kp  N     &kp  E    &kp  I  &kp  O   &kp ESCAPE
                        &kp  X   &kp  C    &kp  D     &kp  V                      &kp  K    &kp  H     &kp COMMA &kp DOT 
-                       &kp LALT &kp LCTRL &kp LSHIFT  &kp SPACE      &lt 1 ENTER  &lt_marco  2 0   &lt 3 TAB    &mo 4
+                       &kp LALT &kp LCTRL &kp LSHIFT  &kp SPACE      &lt 1 ENTER  &mouse_macro  2 0   &lt 3 TAB    &mo 4
                         >;
                 };
 

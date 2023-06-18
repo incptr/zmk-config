@@ -12,9 +12,19 @@
         ZMK_MACRO(warpd_macro,
             wait-ms = <30>;
             tap-ms = <40>;
-            bindings = <&kp LA(LS(N)) &to 5>;t>;
+            bindings = <&kp LA(LS(N))>,  
+                       <&to 5>;
         )
     };
+    behaviors {
+        lt_macro: behavior_lt_macro {
+            compatible = "zmk,behavior-hold-tap";
+            label = "lt_macro";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&mo>, <&warpd_macro>;
+        };
 
 
         keymap {
@@ -31,7 +41,7 @@
  &kp   Z       &kp  Q  &kp  W   &kp  F    &kp  P     &kp  B                      &kp  J    &kp  L     &kp  U    &kp  Y  &kp  SQT &kp SLASH  
  &kp BACKSPACE &kp  A  &kp  R   &kp  S    &kp  T     &kp  G                      &kp  M    &kp  N     &kp  E    &kp  I  &kp  O   &kp ESCAPE
                        &kp  X   &kp  C    &kp  D     &kp  V                      &kp  K    &kp  H     &kp COMMA &kp DOT 
-                       &kp LALT &kp LCTRL &kp LSHIFT  &kp SPACE      &lt 1 ENTER  &lt warpd_macro  2    &lt 3 TAB    &mo 4
+                       &kp LALT &kp LCTRL &kp LSHIFT  &kp SPACE      &lt 1 ENTER  &lt_marco  2 0   &lt 3 TAB    &mo 4
                         >;
                 };
 
